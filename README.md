@@ -7,17 +7,29 @@
     ```sh
     docker compose -f "trabalho-1\docker-compose.trabalho1.yml" up -d
     ```
+    Browser test -> http://localhost/
 
 - Trabalho 2 – Configuração do Wordpress com Múltiplas Instâncias Utilizando Nginx e Docker Composer
     ##### Start
     ```sh
     docker compose -f "trabalho-2\docker-compose.trabalho2.yml" up -d
     ```
+
+    ```sh
+    docker inspect --format '{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q)
+    ```
+
+    ##### Test Request
+    ```sh
+    curl -I http://localhost/
+    ```
+
 - Trabalho 3 – Realização de Testes de Carga com Múltiplas Instâncias do Wordpress Utilizando o Locust
     ##### Start
     ```sh
     docker compose -f "trabalho-3\docker-compose.trabalho3.yml" up -d
     ```
+    Start load test -> http://localhost:8089/
     
 # Comandos Úteis
 
