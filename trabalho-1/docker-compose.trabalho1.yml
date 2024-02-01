@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  wordpress-db:
+    platform: linux/x86_64 # MAC M1
+    image: mysql:5.7
+    container_name: wordpress-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: usr-wordpress
+      MYSQL_PASSWORD: pwd-wordpress
+    restart: always
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    ports:
+      - "8080:80"
+    depends_on:
+      - wordpress-db
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db:3306
+      WORDPRESS_DB_USER: usr-wordpress
+      WORDPRESS_DB_PASSWORD: pwd-wordpress
+      WORDPRESS_DB_NAME: wordpress
+    restart: always
